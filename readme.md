@@ -10,6 +10,8 @@ There are at least a few existing implementations of this idea. What makes this 
 * **Syntax**: I've worked to maintain the existing syntax of request. Convenience functions like `defaults` and `get` are present and work as expected.
 * **Why not?**: Reinvention is a good thing. It's been an interesting project, and there's few better ways to learn than by implementing something yourself.
 
+For a wordier explanation, check out the [blog post](https://gregorygellene.com/blog/request-as-promise/)
+
 ## Should I use it?
 
 Sure. I'll be using it myself for some projects. However, in researching this project I came across [got]. I'll be seriously considering it as an alternative to request where I can, and you should too.
