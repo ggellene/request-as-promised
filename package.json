@@ -1,5 +1,5 @@
 {
-  "name": "request-as-promised",
+  "name": "request-as-promise",
   "version": "0.1.0",
   "description": "Yet another promise wrapper for request",
   "main": "index.js",

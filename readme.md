@@ -17,13 +17,13 @@ Sure. I'll be using it myself for some projects. However, in researching this pr
 ### Installation
 
 ```
-npm i --save request-as-promised
+npm i --save request-as-promise
 ```
 
 ### Usage
 
 ```javascript
-var reqAP = require('request-as-promised');
+var reqAP = require('request-as-promise');
 
 reqAP('example.com')
     .spread(function success(response, data) {
