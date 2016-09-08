@@ -37,15 +37,54 @@ function requestAsPromised(opts){
 }
 
 requestAsPromised.defaults = function defaults(opts){
-    var goodOpts = parseArgs(opts);
-    var defaultThis = {opts:goodOpts};
+    var goodOpts = parseArgs(assign(opts, this.opts));
+    var defaultThis = {opts: goodOpts};
 
-    return requestAsPromised.bind(defaultThis);
+    var bound = requestAsPromised.bind(assign(defaultThis, this));
+    Object.keys(requestAsPromised).forEach(function (key) {
+        if(requestAsPromised.hasOwnProperty(key)){
+            bound[key] = requestAsPromised[key];
+        }
+    });
+
+    return bound;
 };
 
 requestAsPromised.get = function get(opts){
     opts = parseArgs(opts);
     opts.method = 'GET';
+    return requestAsPromised(opts);
+};
+
+requestAsPromised.put = function put(opts){
+    opts = parseArgs(opts);
+    opts.method = 'PUT';
+    return requestAsPromised(opts);
+};
+
+requestAsPromised.post = function post(opts){
+    opts = parseArgs(opts);
+    opts.method = 'POST';
+    return requestAsPromised(opts);
+};
+
+requestAsPromised.delete =
+requestAsPromised.del = function del(opts){
+    opts = parseArgs(opts);
+    opts.method = 'DELETE';
+    return requestAsPromised(opts);
+
+};
+
+requestAsPromised.patch = function patch(opts){
+    opts = parseArgs(opts);
+    opts.method = 'PATCH';
+    return requestAsPromised(opts);
+};
+
+requestAsPromised.head = function head(opts){
+    opts = parseArgs(opts);
+    opts.method = 'HEAD';
     return requestAsPromised(opts);
 };
 

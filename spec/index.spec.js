@@ -47,7 +47,7 @@ describe('request-as-promised', function () {
     it('should reject if a URI is not given', function (done) {
         reqAP()
             .then(done.fail, function expectations(err) {
-                expect(err.message).toBe('Argument Error: The argument to requestAsPromised must be a uri/url string or a request options object')
+                expect(err.message).toBe('Argument Error: The argument to requestAsPromised must be a uri/url string or a request options object');
                 done();
             });
     });
@@ -61,7 +61,7 @@ describe('request-as-promised', function () {
     it('should reject if an appropriate URI property is not given in the options object', function (done) {
         reqAP({})
             .then(done.fail, function expectations(err) {
-                expect(err.message).toBe('Argument Error: The argument to requestAsPromised must be a uri/url string or a request options object')
+                expect(err.message).toBe('Argument Error: The argument to requestAsPromised must be a uri/url string or a request options object');
                 done();
             });
     });
@@ -108,7 +108,7 @@ describe('request-as-promised', function () {
             expect(args[0]).toEqual({uri:'not default'});
         });
 
-        it('should not interfere with options set by other calls to .defaults', function () {
+        it('should not interfere with options set by separate calls to .defaults', function () {
             var alternateAP = reqAP.defaults('alternate');
             defaultAP();
 
@@ -117,12 +117,54 @@ describe('request-as-promised', function () {
         });
     });
 
-    describe('.get', function () {
-        it('should set the method to GET', function () {
+    describe('convenience methods', function () {
+        it('.get should set the method to GET', function () {
             reqAP.get('uri');
 
             var args = request.calls.mostRecent().args;
             expect(args[0].method).toBe('GET');
+        });
+
+        it('.put should set the method to PUT', function () {
+            reqAP.put('uri');
+
+            var args = request.calls.mostRecent().args;
+            expect(args[0].method).toBe('PUT');
+        });
+
+        it('.post should set the method to POST', function () {
+            reqAP.post('uri');
+
+            var args = request.calls.mostRecent().args;
+            expect(args[0].method).toBe('POST');
+        });
+
+        it('.del should set the method to DELETE', function () {
+            reqAP.del('uri');
+
+            var args = request.calls.mostRecent().args;
+            expect(args[0].method).toBe('DELETE');
+        });
+
+        it('.delete should set the method to DELETE', function () {
+            reqAP.delete('uri');
+
+            var args = request.calls.mostRecent().args;
+            expect(args[0].method).toBe('DELETE');
+        });
+
+        it('.head should set the method to HEAD', function () {
+            reqAP.head('uri');
+
+            var args = request.calls.mostRecent().args;
+            expect(args[0].method).toBe('HEAD');
+        });
+
+        it('.patch should set the method to PATCH', function () {
+            reqAP.patch('uri');
+
+            var args = request.calls.mostRecent().args;
+            expect(args[0].method).toBe('PATCH');
         });
     });
 });
